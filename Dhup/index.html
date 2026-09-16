@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dhup</title>
+
+    <!-- PWA: makes the app installable on Android/iOS home screens -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#2E7D32">
+    <link rel="icon" href="icons/icon-192.png">
+    <link rel="apple-touch-icon" href="icons/icon-192.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Dhup">
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- SPLASH SCREEN -->
+    <div id="splashScreen" class="screen active">
+
+        <div class="logo-box">
+            🌿
+        </div>
+
+        <h1>Dhup</h1>
+
+        <p>Smart Agarbatti Drying Assistant</p>
+
+    </div>
+
+
+    <!-- LANGUAGE SCREEN -->
+    <div id="languageScreen" class="screen">
+
+        <h2>Select Language</h2>
+
+        <button class="lang-btn" onclick="selectLanguage('English')">
+            🇮🇳 English
+        </button>
+
+        <button class="lang-btn" onclick="selectLanguage('বাংলা')">
+            🇧🇩 বাংলা
+        </button>
+
+        <button class="lang-btn" onclick="selectLanguage('हिन्दी')">
+            🇮🇳 हिन्दी
+        </button>
+
+    </div>
+
+
+    <!-- WELCOME SCREEN -->
+    <div id="welcomeScreen" class="screen">
+
+        <div class="welcome-icon">
+            👋
+        </div>
+
+        <h2 id="welcomeTitle">Welcome</h2>
+
+<p class="welcome-text" id="welcomeText">
+    Monitor Agarbatti Drying Process in Real Time
+</p>
+
+<button class="main-btn"
+        id="startBtn"
+        onclick="showConnect()">
+    Get Started
+</button>
+
+    </div>
+
+
+    <!-- CONNECT SCREEN -->
+    <div id="connectScreen" class="screen">
+
+        <h2 id="connectTitle">Connect Smart Dryer</h2>
+
+        <p>Keep dryer powered ON</p>
+
+        <div class="bluetooth-circle" onclick="connectDevice()">
+
+            <i class="fab fa-bluetooth-b"></i>
+
+        </div>
+
+        <p id="connectText">
+            Tap To Connect
+        </p>
+
+        <p class="ble-note">
+            Works best in Chrome on Android. iOS does not support
+            Bluetooth in the browser — use Demo Mode there instead.
+        </p>
+
+    </div>
+
+
+    <!-- MAIN APP -->
+    <div id="appScreen">
+
+        <!-- HOME PAGE -->
+        <div id="homePage" class="page active">
+
+            <div class="header">
+
+                <div>
+                    <h2>Dhup</h2>
+                    <p class="subtitle">
+                        Smart Dryer Monitor
+                    </p>
+                </div>
+
+                <div class="connected">
+                    🟢 Connected
+                </div>
+
+            </div>
+
+            <!-- CONDITION CARD -->
+            <div class="condition-card">
+
+                <h3>☀ Good For Drying</h3>
+
+                <p>
+                    Temperature & Humidity
+                    are ideal
+                </p>
+
+            </div>
+
+
+            <!-- TEMPERATURE + HUMIDITY -->
+            <div class="grid">
+
+                <div class="card">
+
+                    <h4 id="tempTitle">🌡 Temperature</h4>
+
+                    <div class="value" id="temp">
+                        30°C
+                    </div>
+
+                </div>
+
+                <div class="card">
+
+                    <h4 id="humTitle">💧 Humidity</h4>
+
+                    <div class="value" id="hum">
+                        65%
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- DRYING PROGRESS -->
+            <div class="card">
+
+                <h4 id="progressTitle">📦 Drying Progress</h4>
+
+                <div class="progress">
+
+                    <div class="progress-fill"
+                        id="progressFill">
+                    </div>
+
+                </div>
+
+                <p id="progressText">
+                    70%
+                </p>
+
+            </div>
+
+
+            <!-- FAN + BATTERY -->
+            <div class="grid">
+
+                <div class="card">
+
+                    <h4 id="airflowTitle">🌀 Airflow</h4>
+
+                    <div class="value-small">
+                        Fan ON
+                    </div>
+
+                </div>
+
+                <div class="card">
+
+                    <h4 id="batteryTitle">🔋 Battery</h4>
+
+                    <div class="value-small"
+                        id="battery">
+
+                        84%
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- SOLAR -->
+            <div class="card">
+
+                <h4 id="solarTitle">☀ Solar Status</h4>
+
+                <div class="value-small">
+                    Charging
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- HISTORY PAGE -->
+        <div id="historyPage" class="page">
+
+            <h2 id="historyHeading">📈 History</h2>
+
+            <div class="card">
+
+                <h4>Recent Readings</h4>
+
+                <svg id="historyChart"
+                    viewBox="0 0 300 100">
+
+                </svg>
+
+                <div class="chart-legend">
+                    <span><i class="legend-dot temp-dot"></i> Temperature</span>
+                    <span><i class="legend-dot hum-dot"></i> Humidity</span>
+                </div>
+
+            </div>
+
+            <div class="card">
+
+                <div class="history-list-header">
+                    <h4>Past Readings</h4>
+                    <button class="btn-secondary" onclick="clearHistory()">Clear</button>
+                </div>
+
+                <div class="history-row history-row-head">
+                    <span>Time</span>
+                    <span>Temp</span>
+                    <span>Humidity</span>
+                </div>
+
+                <div id="historyList"></div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ALERTS PAGE -->
+        <div id="alertsPage" class="page">
+
+            <h2 id="alertsHeading">🔔 Alerts</h2>
+
+            <div class="card">
+
+                No Active Alerts
+
+            </div>
+
+        </div>
+
+
+        <!-- PACKAGING PAGE -->
+        <div id="packagingPage" class="page">
+
+            <h2 id="packagingHeading">📦 Packaging</h2>
+
+            <div class="card">
+
+                <h3>Recommended Package</h3>
+
+                <p>
+                    Moisture Resistant Pouch
+                </p>
+
+            </div>
+
+            <div class="card">
+
+                <h3>Estimated Shelf Life</h3>
+
+                <p>
+                    12 Months
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- SETTINGS PAGE -->
+        <div id="settingsPage" class="page">
+
+            <h2 id="settingsHeading">⚙ Settings</h2>
+
+            <div class="card">
+
+                Language :
+                <span id="languageName">
+                    English
+                </span>
+
+            </div>
+
+            <div class="card">
+
+                <h4>Alert Thresholds</h4>
+                <p>High Temp: 38°C &nbsp;|&nbsp; Low Temp: 20°C</p>
+                <p>High Humidity: 75% &nbsp;|&nbsp; Low Battery: 20%</p>
+
+            </div>
+
+            <button id="installAppBtn" class="main-btn" style="display:none;" onclick="installApp()">
+                ⬇ Install App On This Phone
+            </button>
+
+        </div>
+
+
+        <!-- BOTTOM NAVIGATION -->
+        <div class="bottom-nav">
+
+            <button onclick="openPage('homePage')">
+                🏠
+            </button>
+
+            <button onclick="openPage('historyPage')">
+                📈
+            </button>
+
+            <button onclick="openPage('alertsPage')">
+                🔔
+            </button>
+
+            <button onclick="openPage('packagingPage')">
+                📦
+            </button>
+
+            <button onclick="openPage('settingsPage')">
+                ⚙
+            </button>
+
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

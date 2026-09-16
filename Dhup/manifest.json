@@ -1,0 +1,25 @@
+{
+  "name": "GramSense - Smart Agarbatti Drying Assistant",
+  "short_name": "GramSense",
+  "description": "Monitor Agarbatti drying conditions in real time via Bluetooth sensors.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#F5F7FA",
+  "theme_color": "#2E7D32",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
