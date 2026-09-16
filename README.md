@@ -23,12 +23,14 @@ We developed a smart, solar-powered agarbatti drying system that ensures consist
 ☀️ Solar Air Heater (Primary Source)
 
 - Uses a solar air heater as the primary drying mechanism
-- Designed based on the transpired solar air heating method
--A metal roofing sheet with uniformly spaced micro-perforations (holes) is used
--These perforations allow ambient air to be drawn in and heated as it passes through the sun-heated surface
--The heated air is then directed into the drying chamber for efficient moisture removal
--This design improves heat absorption efficiency and airflow distribution
--Reduces energy loss and ensures uniform drying conditions
+-  Designed based on the transpired solar air heating method
+-   Designed based on the transpired solar air heating method
+-   A metal roofing sheet with uniformly spaced micro-perforations (holes) is used
+-   These perforations allow ambient air to be drawn in and heated as it passes through the sun-heated surface
+-   The heated air is then directed into the drying chamber for efficient moisture removal
+-   This design improves heat absorption efficiency and airflow distribution
+-   Reduces energy loss and ensures uniform drying conditions
+
 
 🔋 Solar Panel Backup System
 
